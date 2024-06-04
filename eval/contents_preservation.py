@@ -5,7 +5,6 @@ import numpy as np
 import argparse
 from tqdm import tqdm
 
-
 def cal_score(a, b):
     if len(a.shape) == 1: a = a.unsqueeze(0)  # 차원변환
     if len(b.shape) == 1: b = b.unsqueeze(0)
@@ -13,7 +12,6 @@ def cal_score(a, b):
     a_norm = a / a.norm(dim=1)[:, None]  # l2 정규화 벡터크기 1로 만듬
     b_norm = b / b.norm(dim=1)[:, None]
     return torch.mm(a_norm, b_norm.transpose(0, 1)).item()  # a,b 내적
-
 
 model = AutoModel.from_pretrained('BM-K/KoSimCSE-roberta')
 tokenizer = AutoTokenizer.from_pretrained('BM-K/KoSimCSE-roberta')
